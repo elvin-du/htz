@@ -1,22 +1,18 @@
 package controllers
 
-import(
-    "time"
+import (
+	"htz/models"
+	"time"
 )
 
-type Nav struct{
-	Name string
-	NavItems []*NavItem
+type Nav struct {
+	models.Nav
+	NavItems []*models.NavItem
 }
 
-type NavItem struct{
-	Name string
-	Uri string
-}
-
-type News struct{
-    Title string
-    Content string
-    Uri string
-    Date time.Time
+type News struct {
+	Title   string
+	Content string
+	Uri     string
+	Date    time.Time
 }

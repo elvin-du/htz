@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"htz/models"
 )
 
 type Controller struct {
@@ -9,39 +10,62 @@ type Controller struct {
 }
 
 func (this *Controller) Prepare() {
-	navs := []*Nav{}
+	navs, err := models.NavModel().Navs()
+	if nil != err {
+		beego.Error(err)
+		this.Abort(err.Error())
+		return
+	}
 
-	var navItems []*NavItem
-	item1 := NavItem{Name: "创始人介绍", Uri: "#"}
-	navItems = append(navItems, &item1)
+	var ns = []*Nav{}
 
-	item2 := NavItem{Name: "初衷与愿景", Uri: "#"}
-	navItems = append(navItems, &item2)
+	for _, v := range navs {
+		items, err := models.NavModel().NavItems(v.Id)
+		if nil != err {
+			beego.Error(err)
+			this.Abort(err.Error())
+			return
+		}
 
-	item3 := NavItem{Name: "开山点滴故事", Uri: "#"}
-	navItems = append(navItems, &item3)
+		var n Nav
+		n.Id = v.Id
+		n.Name = v.Name
+		n.NavItems = items
+		ns = append(ns, &n)
+	}
 
-	item4 := NavItem{Name: "中岭山风光", Uri: "#"}
-	navItems = append(navItems, &item4)
 
-	nav1 := Nav{Name: "中岭山禅院", NavItems: navItems}
-	navs = append(navs, &nav1)
+	//	var navItems []*NavItem
+	//	item1 := NavItem{Name: "创始人介绍", Uri: "#"}
+	//	navItems = append(navItems, &item1)
 
-	var navItems2 []*NavItem
-	item5 := NavItem{Name: "创始人介绍", Uri: "#"}
-	navItems2 = append(navItems2, &item5)
+	//	item2 := NavItem{Name: "初衷与愿景", Uri: "#"}
+	//	navItems = append(navItems, &item2)
 
-	item6 := NavItem{Name: "初衷与愿景", Uri: "#"}
-	navItems2 = append(navItems2, &item6)
+	//	item3 := NavItem{Name: "开山点滴故事", Uri: "#"}
+	//	navItems = append(navItems, &item3)
 
-	item7 := NavItem{Name: "开山点滴故事", Uri: "#"}
-	navItems2 = append(navItems2, &item7)
+	//	item4 := NavItem{Name: "中岭山风光", Uri: "#"}
+	//	navItems = append(navItems, &item4)
 
-	item8 := NavItem{Name: "中岭山风光", Uri: "#"}
-	navItems2 = append(navItems2, &item8)
+	//	nav1 := Nav{Name: "中岭山禅院", NavItems: navItems}
+	//	navs = append(navs, &nav1)
 
-	nav2 := Nav{Name: "中岭山禅院", NavItems: navItems2}
-	navs = append(navs, &nav2)
+	//	var navItems2 []*NavItem
+	//	item5 := NavItem{Name: "创始人介绍", Uri: "#"}
+	//	navItems2 = append(navItems2, &item5)
 
-	this.Data["Navs"] = navs
+	//	item6 := NavItem{Name: "初衷与愿景", Uri: "#"}
+	//	navItems2 = append(navItems2, &item6)
+
+	//	item7 := NavItem{Name: "开山点滴故事", Uri: "#"}
+	//	navItems2 = append(navItems2, &item7)
+
+	//	item8 := NavItem{Name: "中岭山风光", Uri: "#"}
+	//	navItems2 = append(navItems2, &item8)
+
+	//	nav2 := Nav{Name: "中岭山禅院", NavItems: navItems2}
+	//	navs = append(navs, &nav2)
+
+	this.Data["Navs"] = ns
 }

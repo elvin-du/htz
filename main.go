@@ -1,13 +1,16 @@
 package main
 
 import (
-	_ "htz/routers"
 	"github.com/astaxie/beego"
-    "htz/utils"
+	_ "htz/routers"
+	"htz/utils"
 )
 
 func main() {
-    beego.AddFuncMap("dateYMD",utils.DateYMD)
 	beego.Run()
 }
 
+func init() {
+	beego.AddFuncMap("dateYMD", utils.DateYMD)
+    beego.SetStaticPath("/public","static")
+}

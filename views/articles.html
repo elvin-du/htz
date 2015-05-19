@@ -1,0 +1,14 @@
+<div class="panel panel-info">
+	{{if .Article}}
+	<div class="panel-heading">{{.Article.Title}}</div>
+	<p>{{.Article.Content}}</p>
+	{{else}}
+	<div class="panel-heading">Article</div>
+	{{end}}
+
+	<div class="list-group">
+		{{range .Articles}}
+		<a class="list-group-item" href="/article/{{.Id}}">{{.Title}}  [{{dateYMD .CreatedAt}}]</a>
+		{{end}}
+	</div>
+</div>
