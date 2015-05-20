@@ -3,12 +3,69 @@
 	<div class="panel-heading">{{.Article.Title}}</div>
 	<p>{{.Article.Content}}</p>
 	{{else}}
-	<div class="panel-heading">Article</div>
+	<div class="panel-heading">{{.Kind.Name}}</div>
 	{{end}}
 
 	<div class="list-group">
 		{{range .Articles}}
-		<a class="list-group-item" href="/article/{{.Id}}">{{.Title}}  [{{dateYMD .CreatedAt}}]</a>
+		<a class="list-group-item" href="/article/{{.Id}}" target="view_window">
+		<h4>{{.Title}}      <small>[{{dateYMD .CreatedAt}}]</small></h4>
+		<p>{{.ContentAbstract}}...</p>
+		</a>
+		{{end}}
+	</div>
+</div>
+
+<div class="panel panel-success">
+	{{if .Article}}
+	<div class="panel-heading">{{.Article.Title}}</div>
+	<p>{{.Article.Content}}</p>
+	{{else}}
+	<div class="panel-heading">{{.Kind.Name}}</div>
+	{{end}}
+
+	<div class="list-group">
+		{{range .Articles}}
+		<a class="list-group-item" href="/article/{{.Id}}" target="view_window">
+		<h4>{{.Title}}      <small>[{{dateYMD .CreatedAt}}]</small></h4>
+		<p>{{.ContentAbstract}}...</p>
+		</a>
+		{{end}}
+	</div>
+</div>
+
+<div class="panel panel-info">
+	{{if .Article}}
+	<div class="panel-heading">{{.Article.Title}}</div>
+	<p>{{.Article.Content}}</p>
+	{{else}}
+	<div class="panel-heading">{{.Kind.Name}}</div>
+	{{end}}
+
+	<div class="list-group">
+		{{range .Articles}}
+		<a class="list-group-item" href="/article/{{.Id}}" target="view_window">
+		<h4>{{.Title}}      <small>[{{dateYMD .CreatedAt}}]</small></h4>
+		<p>{{.ContentAbstract}}...</p>
+		</a>
+		{{end}}
+	</div>
+</div>
+
+<div class="panel panel-success">
+	{{if .Article}}
+	<div class="panel-heading">{{.Article.Title}}</div>
+	<p>{{.Article.Content}}</p>
+	{{else}}
+	<div class="panel-heading">{{.Kind.Name}}</div>
+	{{end}}
+
+	<div class="list-group">
+		{{range .Articles}}
+		<a class="list-group-item" href="/article/{{.Id}}" target="view_window">
+		<h4>{{.Title}}      <small>[{{dateYMD .CreatedAt}}]</small></h4>
+		<p>{{.ContentAbstract}}...</p>
+		</a>
 		{{end}}
 	</div>
 </div>

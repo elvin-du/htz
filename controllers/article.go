@@ -44,7 +44,15 @@ func (this *ArticleController) List() {
 		return
 	}
 
+    item, err := models.ArticleModel().NavItemById(kind)
+	if nil != err {
+		beego.Error(err)
+        this.Abort(err.Error())
+		return
+	}
+
 	this.Data["Articles"] = as
+    this.Data["Kind"] = item
 	this.Layout = "index.html"
 	this.TplNames = "articles.html"
 }
