@@ -4,6 +4,28 @@
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-	</script>
+		var curIndex=0;
+//时间间隔(单位毫秒)，每秒钟显示一张，数组共有5张图片放在Photos文件夹下。图片路径可以是绝对路径或者相对路径
+var timeInterval=1000; //时间1秒
+var arr=new Array();
+arr[0]="/public/img/1.jpg";
+arr[1]="/public/img/2.jpg";
+arr[2]="/public/img/3.jpg";
+arr[3]="/public/img/4.jpg";
+setInterval(changeImg,timeInterval);
+function changeImg()
+{
+	var obj=document.getElementById("obj");
+	if (curIndex==arr.length-1) 
+	{
+		curIndex=0;
+	}
+	else
+	{
+		curIndex+=1;
+	}
+	obj.src=arr[curIndex];
+}
+</script>
 </body>
 </html>
