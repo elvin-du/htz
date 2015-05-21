@@ -4,7 +4,14 @@
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-
+	$(document).ready(function(){
+		$("li.dropdown").mouseover(function(){
+			$(this).addClass('open')			
+		}).mouseout(function(){
+			$(this).removeClass('open')
+		});
+	});
+		
 	</script>
 </body>
 </html>

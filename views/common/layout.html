@@ -1,0 +1,53 @@
+{{template "common/header.html" .}}
+
+<nav class="navbar navbar-default navbar-inverse">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-offset-1">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">黄庭禅</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li {{if .IsHome}} class="active"{{end}}><a href="/">首页</a></li>
+					{{range .Navs}}
+					<li class="dropdown">
+						<a href="{{.Uri}}" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-expanded="false">
+							{{.Name}}<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu"  role="menu">
+							{{range .NavItems}}
+							<li role="presentation"><a href="{{.Uri}}" class="menuitem">{{.Name}}</a></li>
+							{{end}}
+						</ul>
+					</li>
+					{{end}}
+
+					<form class="navbar-form navbar-left" role="search">
+						<input type="text" class="form-control" placeholder="Search">
+						<button class="btn btn-default" type="submit">Search</button>
+					</form>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1">
+			{{.LayoutContent}}
+		</div>
+		<div class="col-md-3">
+			<div class="list-group">
+				{{range .Hots}}
+				<a href="/article/{{.Id}}" class="list-group-item">
+					<h4 class="list-group-item-heading">{{.Title}} <small>[{{dateYMD .CreatedAt}}]</small></h4>
+					<p class="list-group-item-text">{{.ContentAbstract}}...</p>
+				</a>
+				{{end}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{{template "common/footer.html" .}}

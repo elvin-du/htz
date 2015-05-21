@@ -1,7 +1,8 @@
 <div class="panel panel-success">
 	{{if .Article}}
 	<div class="panel-heading">{{.Article.Title}}</div>
-	<p>{{.Article.Content}}</p>
+	<img src="/public/img/uploads/food.jpg" width="200px">
+	<p>{{str2html .Article.Content}}</p>
 	{{else}}
 	<div class="panel-heading">{{.Kind.Name}}</div>
 	{{end}}
@@ -10,7 +11,7 @@
 		{{range .Articles}}
 		<a class="list-group-item" href="/article/{{.Id}}" target="view_window">
 		<h4>{{.Title}}      <small>[{{dateYMD .CreatedAt}}]</small></h4>
-		<p>{{.ContentAbstract}}...</p>
+		<p>{{str2html .ContentAbstract}}...</p>
 		</a>
 		{{end}}
 	</div>

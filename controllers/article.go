@@ -25,7 +25,7 @@ func (this *ArticleController) Get() {
 	}
 
 	this.Data["Article"] = article
-	this.Layout = "index.html"
+	this.Layout = "common/layout.html"
 	this.TplNames = "articles.html"
 }
 
@@ -53,6 +53,6 @@ func (this *ArticleController) List() {
 
 	this.Data["Articles"] = as
     this.Data["Kind"] = item
-	this.Layout = "index.html"
+	this.Layout = "common/layout.html"
 	this.TplNames = "articles.html"
 }

@@ -4,11 +4,11 @@ import (
 	"time"
 )
 
-type MainController struct {
+type HomeController struct {
 	Controller
 }
 
-func (this *MainController) Get() {
+func (this *HomeController) Get() {
 	news1 := News{Title: "幸福内心禅（一百零八）", Content: `不屑与朋友去唱K而得罪了朋友该怎么办？
 怎么区别“直性子”和“狭隘”？
 家里常有太多剩菜，在爱惜食物和养生之间该怎么选择？
@@ -35,6 +35,6 @@ func (this *MainController) Get() {
 
 	this.Data["News"] = newsArr
 	this.Data["IsHome"] = true
-	this.Layout = "index.html"
-	this.TplNames = "content.html"
+	this.Layout = "common/layout.html"
+	this.TplNames = "home.html"
 }

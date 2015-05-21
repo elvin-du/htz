@@ -26,6 +26,6 @@ func (this *NewsController) Get() {
 	}
 
 	this.Data["Date"] = time.Now()
-	this.Layout = "index.html"
+	this.Layout = "common/layout.html"
 	this.TplNames = "news.html"
 }
